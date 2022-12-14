@@ -1,38 +1,181 @@
-.App {
+body{
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   text-align: center;
+  color: rgba(233, 233, 233, 0.9);
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.temperature-container{
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  gap: 3rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h3{
+  font-size: 5rem;
+  padding: 1rem;
 }
+
+button{
+  background: none;
+  border: none;
+  border-radius: 18rem;
+}
+
+button:hover{
+  cursor : pointer;
+  transition: transform .05s;
+  transform: scale(1.05);
+}
+
+
+form{
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  /* background-color: rgb(193, 193, 193); */
+  /* width: 40rem; */
+  /* margin-left: 8rem; */
+  margin-left: 25rem;
+  /* left: 40rem; */
+}
+
+.temperature-measure{
+  display: flex;
+  flex-direction: column;
+}
+
+.location{
+  /* border: 1px solid rosybrown; */
+}
+
+.city{
+  font-size: 3rem;
+  color: aliceblue;
+  /* border: 1px solid rgb(238, 0, 255); */
+}
+
+.info{
+  border: 1px solid rebeccapurple;
+  display: grid;
+  width: 32rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem 1.5rem;
+  margin: 0 auto;
+}
+
+.forecastcontainer p{
+  margin-top: 5rem;
+  font-size: 1.4rem;
+}
+
+.temperature-container p{
+  font-size: 2.2rem;
+}
+
+img{
+  width: 3rem;
+}
+
+form img{
+  width: .8rem;
+}
+
+.forecast{
+  width: 90vw;
+  display: flex;
+  /* border: 1px solid red; */
+  margin-top: 0.5rem;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.forecastdata{
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid rgb(0, 89, 12); */
+  margin: 1rem auto;
+  gap: 1.2rem;
+}
+
+.forecastdatadate{
+  font-size: 0.9rem;
+  color: rgb(200, 208, 215);
+}
+
+
+.forecastdatatemp{
+  font-size: 1rem;
+}
+
+input{
+  background: none;
+  /* box-shadow: 1rem; */
+  border-radius: 1rem;
+  font-size: 1rem;
+  /* position: relative; */
+  z-index: 1;
+  left: -20px;
+}
+
+.loadingImg{
+  width: 20rem;
+}
+
+@media all and (max-width: 520px){
+  .info{
+    grid-template-columns: 1fr 1fr;
+    width: 18rem;
+  }
+
+  .temperature-container{
+    height: 8rem;
+  }
+
+  .forecastcontainer p{
+    margin-top: 2.4rem;
+    font-size: 1.4rem;
+  }
+
+
+  .forecastdatadate{
+    font-size: 0.7rem;
+    color: rgb(200, 208, 215);
+  }
+  
+  .forecastdatatemp{
+    font-size: 0.8rem;
+  }
+  
+
+  img{
+    width: 2.5rem;
+  }
+
+  form{
+    margin-top: 0rem;
+  }
+
+}
+
+
