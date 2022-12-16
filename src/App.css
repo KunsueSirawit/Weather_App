@@ -27,34 +27,46 @@ body{
   gap: 3rem;
 }
 
+
+
 h3{
   font-size: 5rem;
   padding: 1rem;
 }
 
 button{
+  display:inline;
+  position: sticky;
   background: none;
   border: none;
-  border-radius: 18rem;
+  height: 1.35rem;
+  border-radius: 5rem;
 }
 
 button:hover{
   cursor : pointer;
   transition: transform .05s;
   transform: scale(1.05);
+  background-color: rgba(144, 144, 144, 0.288);
 }
 
+.form{
+  /* border: 1px solid rgb(8, 0, 255); */
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 
 form{
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   /* background-color: rgb(193, 193, 193); */
-  /* width: 40rem; */
-  /* margin-left: 8rem; */
-  margin-left: 25rem;
-  /* left: 40rem; */
+  width: 20rem;
+  align-items: center;
+  margin-top: 0.2rem;
 }
 
 .temperature-measure{
@@ -62,18 +74,16 @@ form{
   flex-direction: column;
 }
 
-.location{
-  /* border: 1px solid rosybrown; */
-}
+
 
 .city{
-  font-size: 3rem;
+  font-size: 3.2rem;
   color: aliceblue;
   /* border: 1px solid rgb(238, 0, 255); */
 }
 
 .info{
-  border: 1px solid rebeccapurple;
+  /* border: 1px solid rebeccapurple; */
   display: grid;
   width: 32rem;
   grid-template-columns: 1fr 1fr 1fr;
@@ -129,18 +139,30 @@ form img{
 }
 
 input{
-  background: none;
+  background: transparent;
   /* box-shadow: 1rem; */
-  border-radius: 1rem;
-  font-size: 1rem;
+  border: none;
+  border-radius: 0.2rem;
+  font-size: 0.7rem;
   /* position: relative; */
-  z-index: 1;
-  left: -20px;
+  color: rgb(212, 212, 212);
 }
+
+input:focus{
+  border: none;
+  outline: none;
+}
+
 
 .loadingImg{
   width: 20rem;
 }
+
+p{
+  font-size: 8rem;
+}
+
+
 
 @media all and (max-width: 520px){
   .info{
@@ -174,6 +196,10 @@ input{
 
   form{
     margin-top: 0rem;
+  }
+
+  input{
+    width: 8rem;
   }
 
 }

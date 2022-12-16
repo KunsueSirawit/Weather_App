@@ -6,7 +6,7 @@ import bgCloudy from './img/Bg/bgCloudy.jpg';
 import Bg from './img/component/Bg.js';
 import loadingImg from './img/loading/loadingImg.png';
 import searchbutton from './img/search/searchbutton.png';
-
+import cityname from './cityname.js';
 
 function App() {
 
@@ -16,7 +16,8 @@ function App() {
   const [ loading , setLoading] = useState(false)
   const [ measurement , setMeasurement] = useState('k')
   const [ temperature , setTemperature ]  = useState({})
-  const [ weatherMain , setWeatherMain] = useState('')
+  const [ weatherMain , setWeatherMain] = useState()
+  const [ weatherNumber , setWeatherNumber ] = useState()
   const [ forecast , setForecast] = useState([])
   const [ background , setBackground] = useState('')
   const [ colorC , setColorC ] = useState('')
@@ -30,7 +31,7 @@ function App() {
   const getApi = async() => {
     const response = await axios(baseurl)
     setCity(response.data)
-    console.log(city.name)
+    // console.log(city.name)
     setLoading(true)
     setTemperature(response.data.main)
     // console.log(response.data.weather[0])
@@ -50,10 +51,10 @@ function App() {
   useEffect(()=>{
     getApi()
     getApiForecast()
+    setWeatherNumber(0)
   },[])
 
 ////////////////////////////////////////////////////////////
-
 
 
   const convertToC = () =>{
@@ -72,35 +73,50 @@ function App() {
       setColorC('transparent')
     }
 
-  // if ( measurement === 'k'){
-  //     setColorC('white')
-  //     setColorK('none')
-  // } else {
-  //     setColorK('white')
-  //     setColorC('none')
-  // }
+    // const changebackground = () => {
+    //   if (weatherMain == 'Rain'){
+    //     setWeatherNumber(0)
+    //   } else if ( weatherMain == 'Clouds'){
+    //     setWeatherNumber(3)
+    //   } else if ( weatherMain == 'Sun'){
+    //     setWeatherNumber(1)
+    //   } else
+    //     setWeatherNumber(1)
+    // }
 
-  const aa = 0
+  const findcity = () =>{
+    const find = cityname.find(element => {
+      return (element.toLowerCase) == (name.toLowerCase)
+    })
+    if (find.toLowerCase !== name.toLowerCase){
+      alert('Not found')
+    } else {
+      getApi()
+      getApiForecast()
+      setMeasurement('k')
+      setName('')
+    }
+  }
 
   const senddata = (e) => {
     e.preventDefault()
-    getApi()
-    getApiForecast()
-    setMeasurement('k')
+    findcity()
   }
 
 
   return (
     ( loading ?
-  <div className="App" style={{backgroundImage: `URL(${Bg[aa].img})`,
+  <div className="App" style={{backgroundImage: `URL(${Bg[weatherNumber].img})`,
                                backgroundRepeat  : 'no-repeat',
                                backgroundPosition: 'center'
   }}>
-    <section>
+    <div className='form'>
     <form onSubmit={senddata}>
-        <input type='text' value= {name} onChange={(e)=> setName(e.target.value)} />
+        <input type='text' placeholder='Province......' value= {name} onChange={(e)=> setName(e.target.value)} />
         <button type="submit"> <img src={searchbutton} /> </button>
     </form>
+    </div>
+    <section>
     <div className="location">
       <h1 className="city"> {city.name} </h1>
     </div>
@@ -109,7 +125,7 @@ function App() {
         <div className='temperature-container'>
           {weatherMain === 'Rain' && <img src={Pic1[3].img} />}
           {weatherMain === 'Clouds' && <img src={Pic1[1].img} />}
-          {weatherMain === 'Sun' && <img src={Pic1[0].img} />}
+          {weatherMain === 'Sun' && <img src={Pic1[0].img} />  }
           {weatherMain === 'Clear' && <img src={Pic1[0].img} />}
           <p>
               {(temperature.temp).toFixed()}°
