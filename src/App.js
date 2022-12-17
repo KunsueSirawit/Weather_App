@@ -8,6 +8,8 @@ import loadingImg from './img/loading/loadingImg.png';
 import searchbutton from './img/search/searchbutton.png';
 import cityname from './cityname.js';
 
+
+
 function App() {
 
   const [ name, setName ]  = useState('Bangkok')
@@ -45,13 +47,13 @@ function App() {
   }
 
   
-
 /////////////////////////////////////////////////////////////
 
   useEffect(()=>{
     getApi()
     getApiForecast()
     setWeatherNumber(0)
+    setColorK('white')
   },[])
 
 ////////////////////////////////////////////////////////////
@@ -73,28 +75,22 @@ function App() {
       setColorC('transparent')
     }
 
-    // const changebackground = () => {
-    //   if (weatherMain == 'Rain'){
-    //     setWeatherNumber(0)
-    //   } else if ( weatherMain == 'Clouds'){
-    //     setWeatherNumber(3)
-    //   } else if ( weatherMain == 'Sun'){
-    //     setWeatherNumber(1)
-    //   } else
-    //     setWeatherNumber(1)
-    // }
-
   const findcity = () =>{
     const find = cityname.find(element => {
-      return (element.toLowerCase) == (name.toLowerCase)
+      return element.toLowerCase() == name.toLowerCase()
     })
-    if (find.toLowerCase !== name.toLowerCase){
+    
+    // console.log(find.toLowerCase())
+
+    if (find.toLowerCase() !== name.toLowerCase()){
       alert('Not found')
+      // console.log('aa')
     } else {
       getApi()
       getApiForecast()
       setMeasurement('k')
       setName('')
+      // console.log('bb')
     }
   }
 
@@ -106,9 +102,11 @@ function App() {
 
   return (
     ( loading ?
-  <div className="App" style={{backgroundImage: `URL(${Bg[weatherNumber].img})`,
+  <div className="App" style={{backgroundImage: `URL(${Bg[5].img})`,
                                backgroundRepeat  : 'no-repeat',
-                               backgroundPosition: 'center'
+                               backgroundSize : '100rem',
+                               backgroundPosition: 'center',
+                              //  backgroundSize: 'cover'
   }}>
     <div className='form'>
     <form onSubmit={senddata}>
@@ -166,7 +164,7 @@ function App() {
                   {data.weather[0].main === 'Clear' && <img src={Pic1[0].img}  /> }
                   { measurement === 'k' && <label className='forecastdatatemp' > {tempK}°  </label> } 
                   { measurement === 'c' && <label className='forecastdatatemp' > {tempC}°  </label> }
-                  {/* <img src= {loadingImg} /> */}
+                  
               </div>
             )}
         })}

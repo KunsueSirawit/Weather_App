@@ -23,11 +23,10 @@ body{
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 10rem;
+  height: 8rem;
   gap: 3rem;
+  margin-bottom: 1rem;
 }
-
-
 
 h3{
   font-size: 5rem;
@@ -35,11 +34,11 @@ h3{
 }
 
 button{
-  display:inline;
-  position: sticky;
+  /* display:inline; */
+  /* position: sticky; */
   background: none;
   border: none;
-  height: 1.35rem;
+  height: 1.33rem;
   border-radius: 5rem;
 }
 
@@ -93,11 +92,13 @@ form{
 
 .forecastcontainer p{
   margin-top: 5rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  color: rgb(240, 240, 240);
 }
 
 .temperature-container p{
-  font-size: 2.2rem;
+  font-size: 2.5rem;
+  color: rgb(255, 251, 232);
 }
 
 img{
@@ -158,9 +159,7 @@ input:focus{
   width: 20rem;
 }
 
-p{
-  font-size: 8rem;
-}
+
 
 
 
@@ -176,7 +175,7 @@ p{
 
   .forecastcontainer p{
     margin-top: 2.4rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
 
