@@ -1,12 +1,14 @@
 body{
   width: 100vw;
-  height: 100vh;
+  height: 150vh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-align: center;
   color: rgba(233, 233, 233, 0.9);
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .App{
@@ -17,8 +19,8 @@ body{
   justify-content: center;
 }
 
+
 .temperature-container{
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -34,8 +36,6 @@ h3{
 }
 
 button{
-  /* display:inline; */
-  /* position: sticky; */
   background: none;
   border: none;
   height: 1.33rem;
@@ -50,7 +50,6 @@ button:hover{
 }
 
 .form{
-  /* border: 1px solid rgb(8, 0, 255); */
   width: 90vw;
   display: flex;
   flex-direction: row;
@@ -58,11 +57,9 @@ button:hover{
 }
 
 form{
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  /* background-color: rgb(193, 193, 193); */
   width: 20rem;
   align-items: center;
   margin-top: 0.2rem;
@@ -73,16 +70,12 @@ form{
   flex-direction: column;
 }
 
-
-
 .city{
   font-size: 3.2rem;
   color: aliceblue;
-  /* border: 1px solid rgb(238, 0, 255); */
 }
 
 .info{
-  /* border: 1px solid rebeccapurple; */
   display: grid;
   width: 32rem;
   grid-template-columns: 1fr 1fr 1fr;
@@ -101,6 +94,65 @@ form{
   color: rgb(255, 251, 232);
 }
 
+.dropdown-container{
+  display: flex;
+  margin-top: 12rem;
+  padding: 0rem;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  height: 10rem;
+  overflow-y: scroll;
+}
+
+.dropdown{
+  position: absolute;
+}
+
+ul{
+  list-style: none;
+  background-color: rgb(255, 255, 255, 0.05);
+  width: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin-right: 0rem;
+  font-size: 0.18rem;
+  height: 100rem;
+  border-radius: 0.4rem;
+  overflow-x: hidden;
+}
+
+.dropdown-button:focus + .dropdown-container{
+  opacity: 1;
+  visibility: visible;
+}
+
+::-webkit-scrollbar {
+  background: rgba(164, 220, 241, 0.186);
+  border-radius: 1rem;
+  width: 0.7rem;
+}
+
+::-webkit-scrollbar-thumb{
+  background: rgba(255, 230, 86, 0.748);
+  border-radius: 1rem;
+}
+
+.city-button{
+  color: rgba(220, 220, 220, 0.925);
+  font-size: 0.7rem;
+  
+}
+
+.city-button:hover{
+  color: rgba(255, 255, 243, 0.975);
+  font-size: 0.7rem;
+}
+
+
 img{
   width: 3rem;
 }
@@ -112,19 +164,16 @@ form img{
 .forecast{
   width: 90vw;
   display: flex;
-  /* border: 1px solid red; */
   margin-top: 0.5rem;
   justify-content: space-around;
   align-items: center;
 }
-
 
 .forecastdata{
   width: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid rgb(0, 89, 12); */
   margin: 1rem auto;
   gap: 1.2rem;
 }
@@ -134,19 +183,16 @@ form img{
   color: rgb(200, 208, 215);
 }
 
-
 .forecastdatatemp{
   font-size: 1rem;
 }
 
 input{
   background: transparent;
-  /* box-shadow: 1rem; */
   border: none;
   border-radius: 0.2rem;
   font-size: 0.7rem;
-  /* position: relative; */
-  color: rgb(212, 212, 212);
+  color: rgb(232, 232, 232);
 }
 
 input:focus{
@@ -154,13 +200,22 @@ input:focus{
   outline: none;
 }
 
+input::placeholder{
+  color: rgb(170, 170, 170);
+}
+
 
 .loadingImg{
   width: 20rem;
 }
 
-
-
+.dropdown-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -0.3rem;
+  width: 1.3rem;
+}
 
 
 @media all and (max-width: 520px){

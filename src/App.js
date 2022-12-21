@@ -2,13 +2,11 @@ import './App.css';
 import {useEffect, useState} from 'react'
 import axios from 'axios';
 import Pic1 from './img/component/ForecastImg';
-import bgCloudy from './img/Bg/bgCloudy.jpg';
 import Bg from './img/component/Bg.js';
-import loadingImg from './img/loading/loadingImg.png';
 import searchbutton from './img/search/searchbutton.png';
 import cityname from './cityname.js';
-
-
+import Dropdown from './Dropdown'
+import down from './img/search/down.png'
 
 function App() {
 
@@ -21,9 +19,10 @@ function App() {
   const [ weatherMain , setWeatherMain] = useState()
   const [ weatherNumber , setWeatherNumber ] = useState()
   const [ forecast , setForecast] = useState([])
-  const [ background , setBackground] = useState('')
   const [ colorC , setColorC ] = useState('')
   const [ colorK , setColorK ] = useState('')
+  const [ size , setSize] = useState([])
+ 
 
   const apikeyForecast = "4ca01cf9dbfc2f7f56da20b881b0f051"
 
@@ -33,16 +32,13 @@ function App() {
   const getApi = async() => {
     const response = await axios(baseurl)
     setCity(response.data)
-    // console.log(city.name)
     setLoading(true)
     setTemperature(response.data.main)
-    // console.log(response.data.weather[0])
     setWeatherMain(response.data.weather[0].main)
   }
 
   const getApiForecast = async() => {
     const response = await axios(forecasturl)
-    // console.log(response.data.list)
     setForecast(response.data.list)
   }
 
@@ -56,8 +52,7 @@ function App() {
     setColorK('white')
   },[])
 
-////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////
 
   const convertToC = () =>{
     if (measurement === 'k')
@@ -80,25 +75,25 @@ function App() {
       return element.toLowerCase() == name.toLowerCase()
     })
     
-    // console.log(find.toLowerCase())
-
-    if (find.toLowerCase() !== name.toLowerCase()){
+    if (find  !== name.toLowerCase()  && find == undefined){
       alert('Not found')
-      // console.log('aa')
     } else {
       getApi()
       getApiForecast()
       setMeasurement('k')
       setName('')
-      // console.log('bb')
     }
   }
+
 
   const senddata = (e) => {
     e.preventDefault()
     findcity()
   }
 
+  const selectcity = (data) => {
+    setName(data)
+  }
 
   return (
     ( loading ?
@@ -106,12 +101,23 @@ function App() {
                                backgroundRepeat  : 'no-repeat',
                                backgroundSize : '100rem',
                                backgroundPosition: 'center',
-                              //  backgroundSize: 'cover'
   }}>
     <div className='form'>
     <form onSubmit={senddata}>
         <input type='text' placeholder='Province......' value= {name} onChange={(e)=> setName(e.target.value)} />
         <button type="submit"> <img src={searchbutton} /> </button>
+        <button className='dropdown-button' type='button'>
+                <img src= {down} />
+        </button>
+    <div className="dropdown-container">
+        <ul>
+          {cityname.map((data,index)=>{
+            return (
+              <button  onClick={()=> selectcity(data)}  key={index} className='city-button'>  {data}   </button>
+              )
+          })}
+        </ul>
+    </div>
     </form>
     </div>
     <section>
@@ -121,7 +127,7 @@ function App() {
     <div className="card">
       <div className="weather">
         <div className='temperature-container'>
-          {weatherMain === 'Rain' && <img src={Pic1[3].img} />}
+          {weatherMain === 'Rain'   && <img src={Pic1[3].img} />}
           {weatherMain === 'Clouds' && <img src={Pic1[1].img} />}
           {weatherMain === 'Sun' && <img src={Pic1[0].img} />  }
           {weatherMain === 'Clear' && <img src={Pic1[0].img} />}
@@ -133,7 +139,6 @@ function App() {
             <button onClick={()=>  convertToK()} style={{ backgroundColor : colorK }} > K </button>
           </div>
         </div>
-        {/* <small> max : {temperature.temp_max} , min : {temperature.temp_min}</small> */}
       </div>
       <div className = "info">
           <div> {city.weather[0].main}  </div>
@@ -158,13 +163,12 @@ function App() {
             return (
               <div className='forecastdata'>
                 <label className='forecastdatadate' key={index}> {tempdate} </label>
-                  {data.weather[0].main === 'Rain' && <img src={Pic1[3].img}   /> }
-                  {data.weather[0].main === 'Clouds' && <img src={Pic1[1].img}   /> }
-                  {data.weather[0].main === 'Sun' && <img src={Pic1[0].img}  /> }
-                  {data.weather[0].main === 'Clear' && <img src={Pic1[0].img}  /> }
+                  {data.weather[0].main === 'Rain' && <img src={Pic1[3].img} /> }
+                  {data.weather[0].main === 'Clouds' && <img src={Pic1[1].img}  /> }
+                  {data.weather[0].main === 'Sun' && <img src={Pic1[0].img} /> }
+                  {data.weather[0].main === 'Clear' && <img src={Pic1[0].img}    /> }
                   { measurement === 'k' && <label className='forecastdatatemp' > {tempK}°  </label> } 
                   { measurement === 'c' && <label className='forecastdatatemp' > {tempC}°  </label> }
-                  
               </div>
             )}
         })}
@@ -173,7 +177,6 @@ function App() {
     </section>
   </div>
   : <div>
-    {/* <img className='loadingImg' src={loadingImg} /> */}
     <h1> Loading... </h1>  
     </div>
   )
