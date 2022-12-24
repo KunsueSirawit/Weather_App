@@ -5,7 +5,6 @@ import Pic1 from './img/component/ForecastImg';
 import Bg from './img/component/Bg.js';
 import searchbutton from './img/search/searchbutton.png';
 import cityname from './cityname.js';
-import Dropdown from './Dropdown'
 import down from './img/search/down.png'
 
 function App() {

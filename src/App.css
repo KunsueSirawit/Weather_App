@@ -1,3 +1,4 @@
+
 body{
   width: 100vw;
   height: 150vh;
@@ -9,6 +10,9 @@ body{
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
   overflow-y: hidden;
   overflow-x: hidden;
+  scrollbar-color: rgba(255, 230, 86, 0.748) rgba(164, 220, 241, 0.186);
+  /* scrollbar-gutter: stable; */
+  /* scrollbar-gutter: stable both-edges; */
 }
 
 .App{
@@ -38,7 +42,7 @@ h3{
 button{
   background: none;
   border: none;
-  height: 1.33rem;
+  height: 1.1rem;
   border-radius: 5rem;
 }
 
@@ -120,7 +124,7 @@ ul{
   align-items: flex-end;
   margin-right: 0rem;
   font-size: 0.18rem;
-  height: 100rem;
+  height: 80rem;
   border-radius: 0.4rem;
   overflow-x: hidden;
 }
@@ -140,6 +144,7 @@ ul{
   background: rgba(255, 230, 86, 0.748);
   border-radius: 1rem;
 }
+
 
 .city-button{
   color: rgba(220, 220, 220, 0.925);
